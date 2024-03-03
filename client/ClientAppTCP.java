@@ -10,7 +10,7 @@ public class ClientAppTCP {
     String serverIP = args[0];
     int serverPort = Integer.parseInt(args[1]);
 
-    IClient client = new TCPClient();
-    client.startClient(serverIP, serverPort);
+    TCPClient client = new TCPClient();
+    client.initiateCommunication(serverIP, serverPort);
   }
 }

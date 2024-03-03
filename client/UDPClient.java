@@ -137,8 +137,7 @@ public class UDPClient extends ClientFactory {
             ClientLogger.log("Error pre-populating data " + e.getMessage());
           }
       }
-  }
-
-  private String generateRequestId() {
-    return UUID.randomUUID().toString();
+      private String generateRequestId() {
+       return UUID.randomUUID().toString();
+      }
   }

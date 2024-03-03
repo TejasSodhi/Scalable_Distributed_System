@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 public abstract class ClientFactory {
+
   public String generateRequest(BufferedReader userInput) throws IOException {
     System.out.println("The application can add keys and repective values, get all the values for a particular key and delete any particular key value");
     System.out.println("Which functionality do you want to use?");

@@ -10,9 +10,10 @@ import java.net.Socket;
 /**
  * This represents a TCP based server which listens at a given port number for TCP client requests.
  */
-public class TCPServer extends AbstractServer {
+public class TCPServer extends ServerFactory {
 
-    @Override
+    static final ServerLogger serverLogger = new ServerLogger();
+    //@Override
     public void listen(int portNumber) {
         try (ServerSocket serverSocket = new ServerSocket(portNumber)) {
 
@@ -28,7 +29,8 @@ public class TCPServer extends AbstractServer {
                 try {
                     handleRequest(clientSocket);
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    //e.printStackTrace();
+                    serverLogger.log("Error fetching data from server for client: " + clientSocket.getInetAddress());
                 } finally {
                     // log information when client closes connection
                     clientSocket.close();
@@ -37,11 +39,11 @@ public class TCPServer extends AbstractServer {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            serverLogger.log("Error communicating with client: " + clientSocket.getInetAddress() + e.getMessage());
         }
     }
 
-    @Override
+    //@Override
     public void handleRequest(Socket clientSocket) throws IOException {
         try (
           BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));

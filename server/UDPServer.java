@@ -10,8 +10,10 @@ import java.util.zip.Checksum;
  * to the client. This class extends the abstract server class which has the common implementation
  * to handle key value requests.
  */
-public class UDPServer extends AbstractServer {
-  @Override
+public class UDPServer extends ServerFactory {
+
+  static final ServerLogger serverLogger = new ServerLogger();
+  
   public void listen(int portNumber) {
 
     // Server socket creation on specified port number.

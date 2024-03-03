@@ -10,8 +10,8 @@ public class ClientAppUDP {
     String serverIP = args[0];
     int serverPort = Integer.parseInt(args[1]);
 
-    IClient client = new UDPClient();
-    client.startClient(serverIP, serverPort);
+    UDPClient client = new UDPClient();
+    client.initiateCommunication(serverIP, serverPort);
   }
 
 }

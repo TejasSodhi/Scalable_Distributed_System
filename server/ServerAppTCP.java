@@ -8,7 +8,7 @@ public class ServerAppTCP {
     }
 
     int tcpPortNumber = Integer.parseInt(args[0]);
-    IServer tcpServer = new TCPServer();
+    TCPServer tcpServer = new TCPServer();
     tcpServer.listen(tcpPortNumber);
   }
 }
