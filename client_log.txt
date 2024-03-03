@@ -40,3 +40,105 @@
 2024-03-03 10:42:06.885 - GET key9
 2024-03-03 10:42:11.890 - Received no response from the server for the request id : 72533188
 2024-03-03 10:42:11.891 - GET key10
+2024-03-03 16:01:49.511 - Connected to the server
+2024-03-03 16:01:49.576 - Response from server: c94f8b45-1901-4aef-9f42-ef9ab09b7094: Unsupported operation: key1
+2024-03-03 16:01:49.582 - Pre-populated key1 with value 10
+2024-03-03 16:01:49.583 - Response from server: a676bbde-c73a-4b1f-94cb-a191853d1d62: Unsupported operation: key2
+2024-03-03 16:01:49.583 - Pre-populated key2 with value 20
+2024-03-03 16:01:49.584 - Response from server: 711a85e2-49f3-40e9-a960-e4ec8e5ac81e: Unsupported operation: key3
+2024-03-03 16:01:49.584 - Pre-populated key3 with value 30
+2024-03-03 16:01:49.585 - Response from server: c0e03331-e1e9-40c0-b931-8a402b4e5a93: Unsupported operation: key4
+2024-03-03 16:01:49.585 - Pre-populated key4 with value 40
+2024-03-03 16:01:49.586 - Response from server: b1d590fd-c4c5-4e66-9a1a-fdf3d9b78b37: Unsupported operation: key5
+2024-03-03 16:01:49.586 - Pre-populated key5 with value 50
+2024-03-03 16:01:49.586 - Response from server: a3b75c0b-1a19-404d-87ef-45bf93368e90: Unsupported operation: key6
+2024-03-03 16:01:49.587 - Pre-populated key6 with value 60
+2024-03-03 16:01:49.587 - Response from server: 8d55859e-b3d4-4297-8ea6-591fa9edb6e6: Unsupported operation: key7
+2024-03-03 16:01:49.588 - Pre-populated key7 with value 70
+2024-03-03 16:01:49.589 - Response from server: d4bbe328-ad8c-4129-b373-1b8bc42287a4: Unsupported operation: key8
+2024-03-03 16:01:49.590 - Pre-populated key8 with value 80
+2024-03-03 16:01:49.591 - Response from server: ec131af7-3c1f-40b0-9506-4a81eed1185b: Unsupported operation: key9
+2024-03-03 16:01:49.591 - Pre-populated key9 with value 90
+2024-03-03 16:01:49.594 - Response from server: dcd772dd-5ba2-4c21-af41-5c3ec1ae587b: Unsupported operation: key10
+2024-03-03 16:01:49.594 - Pre-populated key10 with value 100
+2024-03-03 16:01:49.597 - Response from server: Invalid request format
+2024-03-03 16:01:49.598 - GET key1
+2024-03-03 16:01:49.601 - Response from server: Invalid request format
+2024-03-03 16:01:49.601 - GET key2
+2024-03-03 16:01:49.604 - Response from server: Invalid request format
+2024-03-03 16:01:49.605 - GET key3
+2024-03-03 16:01:49.606 - Response from server: Invalid request format
+2024-03-03 16:01:49.607 - GET key4
+2024-03-03 16:01:49.609 - Response from server: Invalid request format
+2024-03-03 16:01:49.612 - GET key5
+2024-03-03 16:01:49.615 - Response from server: Invalid request format
+2024-03-03 16:01:49.615 - GET key6
+2024-03-03 16:01:49.617 - Response from server: Invalid request format
+2024-03-03 16:01:49.617 - GET key7
+2024-03-03 16:01:49.618 - Response from server: Invalid request format
+2024-03-03 16:01:49.618 - GET key8
+2024-03-03 16:01:49.619 - Response from server: Invalid request format
+2024-03-03 16:01:49.619 - GET key9
+2024-03-03 16:01:49.620 - Response from server: Invalid request format
+2024-03-03 16:01:49.620 - GET key10
+2024-03-03 16:01:49.621 - Response from server: Invalid request format
+2024-03-03 16:01:49.622 - DELETED key1
+2024-03-03 16:01:49.623 - Response from server: Invalid request format
+2024-03-03 16:01:49.623 - DELETED key2
+2024-03-03 16:01:49.624 - Response from server: Invalid request format
+2024-03-03 16:01:49.625 - DELETED key3
+2024-03-03 16:01:49.626 - Response from server: Invalid request format
+2024-03-03 16:01:49.627 - DELETED key4
+2024-03-03 16:01:49.629 - Response from server: Invalid request format
+2024-03-03 16:01:49.629 - DELETED key5
+2024-03-03 16:08:11.228 - Connected to the server
+2024-03-03 16:08:11.289 - Response from server: 7acb8f91-8296-4dd2-826a-f8216f950da8: Unsupported operation: key1
+2024-03-03 16:08:11.294 - Pre-populated key1 with value 10
+2024-03-03 16:08:11.295 - Response from server: 6404abc5-741e-4564-a812-493e651bba05: Unsupported operation: key2
+2024-03-03 16:08:11.295 - Pre-populated key2 with value 20
+2024-03-03 16:08:11.296 - Response from server: 727d5a7f-9f13-42c9-a6c2-2bf16458c383: Unsupported operation: key3
+2024-03-03 16:08:11.296 - Pre-populated key3 with value 30
+2024-03-03 16:08:11.297 - Response from server: 47c2ad91-1a69-42ab-8bf5-f54a6a8f042e: Unsupported operation: key4
+2024-03-03 16:08:11.297 - Pre-populated key4 with value 40
+2024-03-03 16:08:11.299 - Response from server: fccfd077-ec43-46fd-bcbd-0069d3148f81: Unsupported operation: key5
+2024-03-03 16:08:11.299 - Pre-populated key5 with value 50
+2024-03-03 16:08:11.300 - Response from server: 7e675cba-f4a1-459e-b3c8-69ac0273b913: Unsupported operation: key6
+2024-03-03 16:08:11.300 - Pre-populated key6 with value 60
+2024-03-03 16:08:11.302 - Response from server: e2874c57-781e-4d31-af74-932b847f29e4: Unsupported operation: key7
+2024-03-03 16:08:11.302 - Pre-populated key7 with value 70
+2024-03-03 16:08:11.304 - Response from server: bf85fe2c-fe18-4989-9b42-315487ecd4b2: Unsupported operation: key8
+2024-03-03 16:08:11.304 - Pre-populated key8 with value 80
+2024-03-03 16:08:11.305 - Response from server: b56dd8d2-0f6e-4f09-90ac-f4d424a7cf24: Unsupported operation: key9
+2024-03-03 16:08:11.305 - Pre-populated key9 with value 90
+2024-03-03 16:08:11.306 - Response from server: 3aef93a4-d106-41df-92b6-93e1a4d014b7: Unsupported operation: key10
+2024-03-03 16:08:11.306 - Pre-populated key10 with value 100
+2024-03-03 16:08:11.307 - Response from server: Invalid request format
+2024-03-03 16:08:11.309 - GET key1
+2024-03-03 16:08:11.310 - Response from server: Invalid request format
+2024-03-03 16:08:11.310 - GET key2
+2024-03-03 16:08:11.312 - Response from server: Invalid request format
+2024-03-03 16:08:11.312 - GET key3
+2024-03-03 16:08:11.314 - Response from server: Invalid request format
+2024-03-03 16:08:11.314 - GET key4
+2024-03-03 16:08:11.315 - Response from server: Invalid request format
+2024-03-03 16:08:11.315 - GET key5
+2024-03-03 16:08:11.317 - Response from server: Invalid request format
+2024-03-03 16:08:11.317 - GET key6
+2024-03-03 16:08:11.318 - Response from server: Invalid request format
+2024-03-03 16:08:11.318 - GET key7
+2024-03-03 16:08:11.319 - Response from server: Invalid request format
+2024-03-03 16:08:11.319 - GET key8
+2024-03-03 16:08:11.320 - Response from server: Invalid request format
+2024-03-03 16:08:11.321 - GET key9
+2024-03-03 16:08:11.322 - Response from server: Invalid request format
+2024-03-03 16:08:11.322 - GET key10
+2024-03-03 16:08:11.325 - Response from server: Invalid request format
+2024-03-03 16:08:11.326 - DELETED key1
+2024-03-03 16:08:11.327 - Response from server: Invalid request format
+2024-03-03 16:08:11.327 - DELETED key2
+2024-03-03 16:08:11.327 - Response from server: Invalid request format
+2024-03-03 16:08:11.328 - DELETED key3
+2024-03-03 16:08:11.328 - Response from server: Invalid request format
+2024-03-03 16:08:11.329 - DELETED key4
+2024-03-03 16:08:11.330 - Response from server: Invalid request format
+2024-03-03 16:08:11.330 - DELETED key5

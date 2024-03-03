@@ -11,7 +11,7 @@ public abstract class ServerFactory {
   private static final KeyValueStore keyValueStore = new KeyValueStore();
   //static final ServerLogger serverLogger = new ServerLogger();
 
-  public String processRequest(String inputLine) {
+  public String processRequest(String inputLine) throws IOException {
     String[] tokens = inputLine.split("::");
     System.out.println(inputLine);
     if (tokens.length < 4) {
@@ -35,7 +35,7 @@ public abstract class ServerFactory {
     }
   }
 
-  protected abstract String getRequest(String requestID, String key) throws IOException {
+  protected String getRequest(String requestID, String key) throws IOException {
     String value = keyValueStore.get(key);
     if(value != null) {
       String keyPresent = requestID + ": Value for key '" + key + "': " + value;
@@ -44,22 +44,22 @@ public abstract class ServerFactory {
     else return requestID + ": Key '" + key + "' not found";
   }
 
-   protected abstract String putRequest(String requestID, String key, String value) throws IOException {
+   protected String putRequest(String requestID, String key, String value) throws IOException {
       if (value == null) {
-        return requestId + ": PUT operation requires a value";
+        return requestID + ": PUT operation requires a value";
       }
       keyValueStore.put(key, value);
-      String successMessage = requestId + ": Key '" + key + "' stored with value '" + value + "'";
+      String successMessage = requestID + ": Key '" + key + "' stored with value '" + value + "'";
       return successMessage;
   }
 
-   protected abstract String deleteRequest(String requestID, String key) throws IOException {
+   protected String deleteRequest(String requestID, String key) throws IOException {
       String value = keyValueStore.delete(key);
       if(value !=  null){ 
-        String deletedKeyValue = requestId + ": Deleted key '" + key + "' with value '" + removedValue + "'";
+        String deletedKeyValue = requestID + ": Deleted key '" + key + "' with value '" + value + "'";
         return deletedKeyValue;
       }
-      else return requestId + ": Key '" + key + "' not found";
+      else return requestID + ": Key '" + key + "' not found";
   }
 
 

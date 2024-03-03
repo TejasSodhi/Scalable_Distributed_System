@@ -13,7 +13,8 @@ import java.util.zip.Checksum;
 public class TCPClient extends ClientFactory {
     public void initiateCommunication(String serverIP, int serverPort) {
         Socket socket = null;
-        try (Socket socket = new Socket(serverIP, serverPort);) {
+        try {
+            socket = new Socket(serverIP, serverPort);
             establishConnection(socket);
         } catch (IOException e) {
             System.out.println("Couldn't connect to server at mentioned IP and port");
@@ -27,6 +28,7 @@ public class TCPClient extends ClientFactory {
             PrintWriter serverWriter = new PrintWriter(socket.getOutputStream(), true)
         ) {
             prePopulateKeyValuePairs(serverReader, serverWriter);
+
             while (true) {
                 String userRequest = generateRequest(userInput);
                 if(userRequest.isEmpty()) {
@@ -82,7 +84,7 @@ public class TCPClient extends ClientFactory {
                 String value = Integer.toString(i * 10);
                 String putString = requestId + "::PUT::key" + key + "::value" + value;
 
-                sendRequest(out, in, putString);
+                sendUserRequest(out, in, putString);
                 System.out.println("Pre-populated key" + key + " with value " + value);
                 ClientLogger.log("Pre-populated key" + key + " with value " + value);
             }
@@ -92,7 +94,7 @@ public class TCPClient extends ClientFactory {
                 String key = Integer.toString(i);
                 String getString = requestId + "::GET::key" + key;
 
-                sendRequest(out, in, getString);
+                sendUserRequest(out, in, getString);
                 System.out.println("GET key" + key);
                 ClientLogger.log("GET key" + key);
             }
@@ -102,7 +104,7 @@ public class TCPClient extends ClientFactory {
                 String key = Integer.toString(i);
                 String deleteString = requestId + "::DELETE::key" + key;
 
-                sendRequest(out, in, deleteString);
+                sendUserRequest(out, in, deleteString);
                 System.out.println("DELETED key" + key);
                 ClientLogger.log("DELETED key" + key);
             }
@@ -110,9 +112,5 @@ public class TCPClient extends ClientFactory {
             System.out.println("Error pre-populating data " + e.getMessage());
             ClientLogger.log("Error pre-populating data " + e.getMessage());
         }
-    }
-
-    private String generateRequestId() {
-        return UUID.randomUUID().toString();
     }
 }

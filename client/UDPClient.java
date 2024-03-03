@@ -19,7 +19,7 @@ public class UDPClient extends ClientFactory {
       prePopulateKeyValuePairs(dataSocket, hostAddress, serverPort);
 
       while (true) {
-        String request = generateRequestFromUserChoice(userInput);
+        String request = generateRequest(userInput);
         if(request.isEmpty()) {
           continue;
         }
@@ -32,20 +32,18 @@ public class UDPClient extends ClientFactory {
         }
       }
     } catch (SocketException e) {
-      handleCommunicationError(e);
-    } catch (IOException e) {
-      handleCommunicationError(e);
-    } catch (NumberFormatException e) {
-      handleCommunicationError(e);
-    } catch (ArrayIndexOutOfBoundsException e) {
-      handleCommunicationError(e);
-    }
-  }
-
-  private void handleCommunicationError(IOException e) {
         System.out.println("Error communicating with server: " + e.getMessage());
         ClientLogger.log("Error communicating with server: " + e.getMessage());
-    }
+    } catch (IOException e) {
+        System.out.println("Error communicating with server: " + e.getMessage());
+        ClientLogger.log("Error communicating with server: " + e.getMessage());
+    } catch (NumberFormatException e) {
+        System.out.println("Error communicating with server: " + e.getMessage());
+        ClientLogger.log("Error communicating with server: " + e.getMessage());
+    } catch (ArrayIndexOutOfBoundsException e) {
+        System.out.println("Error communicating with server: " + e.getMessage());
+        ClientLogger.log("Error communicating with server: " + e.getMessage());    }
+  }
 
   private static long generateChecksum(String requestString) {
     byte [] m = requestString.getBytes();
@@ -108,7 +106,7 @@ public class UDPClient extends ClientFactory {
                 String value = Integer.toString(i * 10);
                 String putString = requestId + "::PUT::key" + key + "::value" + value;
 
-                sendRequest(aSocket, putString, aHost, serverPort);
+                sendUserRequest(aSocket, putString, aHost, serverPort);
                 System.out.println("Pre-populated key" + key + " with value " + value);
                 ClientLogger.log("Pre-populated key" + key + " with value " + value);
             }
@@ -118,7 +116,7 @@ public class UDPClient extends ClientFactory {
                 String key = Integer.toString(i);
                 String getString = requestId + "::GET::key" + key;
 
-                sendRequest(aSocket, getString, aHost, serverPort);
+                sendUserRequest(aSocket, getString, aHost, serverPort);
                 System.out.println("GET Pre-populated key" + key);
                 ClientLogger.log("GET Pre-populated key" + key);
             }
@@ -128,7 +126,7 @@ public class UDPClient extends ClientFactory {
                 String key = Integer.toString(i);
                 String deleteString = requestId + "::DELETE::key" + key;
 
-                sendRequest(aSocket, deleteString, aHost, serverPort);
+                sendUserRequest(aSocket, deleteString, aHost, serverPort);
                 System.out.println("DELETED Pre-populated key" + key);
                 ClientLogger.log("DELETED Pre-populated key" + key);
             }
@@ -137,7 +135,4 @@ public class UDPClient extends ClientFactory {
             ClientLogger.log("Error pre-populating data " + e.getMessage());
           }
       }
-      private String generateRequestId() {
-       return UUID.randomUUID().toString();
-      }
-  }
+}

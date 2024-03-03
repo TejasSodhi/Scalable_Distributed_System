@@ -39,7 +39,7 @@ public class TCPServer extends ServerFactory {
                 }
             }
         } catch (IOException e) {
-            serverLogger.log("Error communicating with client: " + clientSocket.getInetAddress() + e.getMessage());
+            serverLogger.log("Error communicating with client: " + e.getMessage());
         }
     }
 

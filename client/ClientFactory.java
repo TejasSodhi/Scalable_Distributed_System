@@ -11,8 +11,10 @@ public abstract class ClientFactory {
     System.out.println("Which functionality do you want to use?");
     System.out.println("1. PUT");
     System.out.println("2. GET");
-    System.out.println("3. DELETE");
-    System.out.print("Enter from the above options only (1/2/3): ");
+    System.out.println("3. GETALL");
+    System.out.println("4. DELETE");
+    System.out.println("5. DELETEALL");
+    System.out.print("Enter from the above options only (1/2/3/4/5): ");
 
     String option = userInput.readLine();
     switch (option) {
@@ -20,22 +22,33 @@ public abstract class ClientFactory {
         return putRequest(userInput);
       case "2":
         return getRequest(userInput);
-      case "3":
+      // case "3":
+      //   return getAllRequest(userInput);
+      case "4":
         return deleteRequest(userInput);
+      // case "5":
+      //   return deleteAllRequest(userInput);
       default:
-        System.out.println("Invalid choice. Please enter 1, 2, or 3.");
+        System.out.println("Invalid choice. Please enter your choice between 1 and 5.");
         return null;
     }
   }
 
-   protected abstract String getRequest(BufferedReader userInput) throws IOException {
+  protected String getRequest(BufferedReader userInput) throws IOException {
     String requestId = generateRequestId();
     System.out.print("Please enter the key (only integer values): ");
     String key = userInput.readLine();
     return requestId + "::" + "GET" + "::" + key;
   }
 
-   protected abstract String putRequest(BufferedReader userInput) throws IOException {
+  protected String getAllRequest(BufferedReader userInput) throws IOException {
+    String requestId = generateRequestId();
+    System.out.print("Please enter the key (only integer values): ");
+    String key = userInput.readLine();
+    return requestId + "::" + "GET" + "::" + key;
+  }
+
+  protected String putRequest(BufferedReader userInput) throws IOException {
     String requestId = generateRequestId();
     System.out.print("Please enter the key: ");
     String key = userInput.readLine();
@@ -44,14 +57,14 @@ public abstract class ClientFactory {
     return requestId + "::" + "PUT" + "::" + key + "::" + value;
   }
 
-   protected abstract String deleteRequest(BufferedReader userInput) throws IOException {
+  protected String deleteRequest(BufferedReader userInput) throws IOException {
     String requestId = generateRequestId();
     System.out.print("Please enter the key (integer): ");
     String key = userInput.readLine();
     return requestId + "::" + "DELETE" + "::" + key;
   }
 
-  protected String generateRequestId() {
+  protected static String generateRequestId() {
     return UUID.randomUUID().toString();
   }
 }

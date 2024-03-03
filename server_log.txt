@@ -1,1 +1,106 @@
 2024-03-03 10:39:43.219 - Server is listening on port 22
+2024-03-03 16:01:14.047 - Server is listening on port 22
+2024-03-03 16:01:49.487 - Request from : /127.0.0.1: Client connected
+2024-03-03 16:01:49.567 - Request from : /127.0.0.1: c94f8b45-1901-4aef-9f42-ef9ab09b7094::PUT::key1::value10
+2024-03-03 16:01:49.570 - Response to : /127.0.0.1: c94f8b45-1901-4aef-9f42-ef9ab09b7094: Unsupported operation: key1
+2024-03-03 16:01:49.582 - Request from : /127.0.0.1: a676bbde-c73a-4b1f-94cb-a191853d1d62::PUT::key2::value20
+2024-03-03 16:01:49.583 - Response to : /127.0.0.1: a676bbde-c73a-4b1f-94cb-a191853d1d62: Unsupported operation: key2
+2024-03-03 16:01:49.583 - Request from : /127.0.0.1: 711a85e2-49f3-40e9-a960-e4ec8e5ac81e::PUT::key3::value30
+2024-03-03 16:01:49.584 - Response to : /127.0.0.1: 711a85e2-49f3-40e9-a960-e4ec8e5ac81e: Unsupported operation: key3
+2024-03-03 16:01:49.584 - Request from : /127.0.0.1: c0e03331-e1e9-40c0-b931-8a402b4e5a93::PUT::key4::value40
+2024-03-03 16:01:49.585 - Response to : /127.0.0.1: c0e03331-e1e9-40c0-b931-8a402b4e5a93: Unsupported operation: key4
+2024-03-03 16:01:49.585 - Request from : /127.0.0.1: b1d590fd-c4c5-4e66-9a1a-fdf3d9b78b37::PUT::key5::value50
+2024-03-03 16:01:49.585 - Response to : /127.0.0.1: b1d590fd-c4c5-4e66-9a1a-fdf3d9b78b37: Unsupported operation: key5
+2024-03-03 16:01:49.586 - Request from : /127.0.0.1: a3b75c0b-1a19-404d-87ef-45bf93368e90::PUT::key6::value60
+2024-03-03 16:01:49.586 - Response to : /127.0.0.1: a3b75c0b-1a19-404d-87ef-45bf93368e90: Unsupported operation: key6
+2024-03-03 16:01:49.587 - Request from : /127.0.0.1: 8d55859e-b3d4-4297-8ea6-591fa9edb6e6::PUT::key7::value70
+2024-03-03 16:01:49.587 - Response to : /127.0.0.1: 8d55859e-b3d4-4297-8ea6-591fa9edb6e6: Unsupported operation: key7
+2024-03-03 16:01:49.589 - Request from : /127.0.0.1: d4bbe328-ad8c-4129-b373-1b8bc42287a4::PUT::key8::value80
+2024-03-03 16:01:49.589 - Response to : /127.0.0.1: d4bbe328-ad8c-4129-b373-1b8bc42287a4: Unsupported operation: key8
+2024-03-03 16:01:49.590 - Request from : /127.0.0.1: ec131af7-3c1f-40b0-9506-4a81eed1185b::PUT::key9::value90
+2024-03-03 16:01:49.591 - Response to : /127.0.0.1: ec131af7-3c1f-40b0-9506-4a81eed1185b: Unsupported operation: key9
+2024-03-03 16:01:49.593 - Request from : /127.0.0.1: dcd772dd-5ba2-4c21-af41-5c3ec1ae587b::PUT::key10::value100
+2024-03-03 16:01:49.593 - Response to : /127.0.0.1: dcd772dd-5ba2-4c21-af41-5c3ec1ae587b: Unsupported operation: key10
+2024-03-03 16:01:49.596 - Request from : /127.0.0.1: 9275b8c3-97f3-4edc-a196-e947da9469f0::GET::key1
+2024-03-03 16:01:49.596 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:01:49.600 - Request from : /127.0.0.1: 54ab6967-9c18-448a-a7f3-1629122e8e0b::GET::key2
+2024-03-03 16:01:49.601 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:01:49.603 - Request from : /127.0.0.1: 35f5374b-3ea9-4a65-a588-66b2aacd2e15::GET::key3
+2024-03-03 16:01:49.603 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:01:49.606 - Request from : /127.0.0.1: cb714c30-7de2-49a0-8e02-9d6554e093cf::GET::key4
+2024-03-03 16:01:49.606 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:01:49.608 - Request from : /127.0.0.1: b57fb237-aaa4-4c2b-b4b2-e0a657b9bb4d::GET::key5
+2024-03-03 16:01:49.608 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:01:49.614 - Request from : /127.0.0.1: f7adda5f-7dc5-4b2f-8811-0243d31e941f::GET::key6
+2024-03-03 16:01:49.615 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:01:49.616 - Request from : /127.0.0.1: 42a59f2d-4904-477b-bb23-b03a3ea6ca6b::GET::key7
+2024-03-03 16:01:49.616 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:01:49.617 - Request from : /127.0.0.1: 7906303e-2083-4dc9-8a33-f3ad31c0cff9::GET::key8
+2024-03-03 16:01:49.617 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:01:49.618 - Request from : /127.0.0.1: 61b79b60-7cc8-4923-b160-c38dea8a0a13::GET::key9
+2024-03-03 16:01:49.619 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:01:49.619 - Request from : /127.0.0.1: 0a506cee-f521-4048-a0f0-d2d5bcc9f78b::GET::key10
+2024-03-03 16:01:49.619 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:01:49.621 - Request from : /127.0.0.1: 02801fa0-b147-4ab0-a382-3638767b48db::DELETE::key1
+2024-03-03 16:01:49.621 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:01:49.622 - Request from : /127.0.0.1: a68bdaa9-9670-45c6-9d46-95f57b8ade9d::DELETE::key2
+2024-03-03 16:01:49.622 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:01:49.623 - Request from : /127.0.0.1: 61804406-b8f9-497a-8095-ca8f6ca55cb5::DELETE::key3
+2024-03-03 16:01:49.625 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:01:49.626 - Request from : /127.0.0.1: ec5e788f-dd62-495f-ba22-98c21a2fd60b::DELETE::key4
+2024-03-03 16:01:49.626 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:01:49.628 - Request from : /127.0.0.1: 5a83205b-5203-48cc-9e27-69aa8a1587df::DELETE::key5
+2024-03-03 16:01:49.628 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:07:38.006 - Client disconnected: /127.0.0.1
+2024-03-03 16:08:02.585 - Server is listening on port 22
+2024-03-03 16:08:11.198 - Request from : /127.0.0.1: Client connected
+2024-03-03 16:08:11.280 - Request from : /127.0.0.1: 7acb8f91-8296-4dd2-826a-f8216f950da8::PUT::key1::value10
+2024-03-03 16:08:11.283 - Response to : /127.0.0.1: 7acb8f91-8296-4dd2-826a-f8216f950da8: Unsupported operation: key1
+2024-03-03 16:08:11.294 - Request from : /127.0.0.1: 6404abc5-741e-4564-a812-493e651bba05::PUT::key2::value20
+2024-03-03 16:08:11.295 - Response to : /127.0.0.1: 6404abc5-741e-4564-a812-493e651bba05: Unsupported operation: key2
+2024-03-03 16:08:11.296 - Request from : /127.0.0.1: 727d5a7f-9f13-42c9-a6c2-2bf16458c383::PUT::key3::value30
+2024-03-03 16:08:11.296 - Response to : /127.0.0.1: 727d5a7f-9f13-42c9-a6c2-2bf16458c383: Unsupported operation: key3
+2024-03-03 16:08:11.297 - Request from : /127.0.0.1: 47c2ad91-1a69-42ab-8bf5-f54a6a8f042e::PUT::key4::value40
+2024-03-03 16:08:11.297 - Response to : /127.0.0.1: 47c2ad91-1a69-42ab-8bf5-f54a6a8f042e: Unsupported operation: key4
+2024-03-03 16:08:11.298 - Request from : /127.0.0.1: fccfd077-ec43-46fd-bcbd-0069d3148f81::PUT::key5::value50
+2024-03-03 16:08:11.298 - Response to : /127.0.0.1: fccfd077-ec43-46fd-bcbd-0069d3148f81: Unsupported operation: key5
+2024-03-03 16:08:11.299 - Request from : /127.0.0.1: 7e675cba-f4a1-459e-b3c8-69ac0273b913::PUT::key6::value60
+2024-03-03 16:08:11.300 - Response to : /127.0.0.1: 7e675cba-f4a1-459e-b3c8-69ac0273b913: Unsupported operation: key6
+2024-03-03 16:08:11.301 - Request from : /127.0.0.1: e2874c57-781e-4d31-af74-932b847f29e4::PUT::key7::value70
+2024-03-03 16:08:11.302 - Response to : /127.0.0.1: e2874c57-781e-4d31-af74-932b847f29e4: Unsupported operation: key7
+2024-03-03 16:08:11.303 - Request from : /127.0.0.1: bf85fe2c-fe18-4989-9b42-315487ecd4b2::PUT::key8::value80
+2024-03-03 16:08:11.303 - Response to : /127.0.0.1: bf85fe2c-fe18-4989-9b42-315487ecd4b2: Unsupported operation: key8
+2024-03-03 16:08:11.304 - Request from : /127.0.0.1: b56dd8d2-0f6e-4f09-90ac-f4d424a7cf24::PUT::key9::value90
+2024-03-03 16:08:11.305 - Response to : /127.0.0.1: b56dd8d2-0f6e-4f09-90ac-f4d424a7cf24: Unsupported operation: key9
+2024-03-03 16:08:11.305 - Request from : /127.0.0.1: 3aef93a4-d106-41df-92b6-93e1a4d014b7::PUT::key10::value100
+2024-03-03 16:08:11.306 - Response to : /127.0.0.1: 3aef93a4-d106-41df-92b6-93e1a4d014b7: Unsupported operation: key10
+2024-03-03 16:08:11.307 - Request from : /127.0.0.1: 94448814-220f-488d-8a67-39218b111929::GET::key1
+2024-03-03 16:08:11.307 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:08:11.309 - Request from : /127.0.0.1: 7788828d-71c2-416f-a397-b150fcdd0502::GET::key2
+2024-03-03 16:08:11.310 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:08:11.311 - Request from : /127.0.0.1: 6e5c507f-1d0a-418a-8381-33f6188de35d::GET::key3
+2024-03-03 16:08:11.311 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:08:11.313 - Request from : /127.0.0.1: 5f182b66-10a8-439c-a764-bca3f4e42e37::GET::key4
+2024-03-03 16:08:11.314 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:08:11.315 - Request from : /127.0.0.1: 31336cb3-6f3e-48f1-bdac-ff08ac0ae3cb::GET::key5
+2024-03-03 16:08:11.315 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:08:11.316 - Request from : /127.0.0.1: 66663718-c35d-423a-a5b5-5bd622994e8d::GET::key6
+2024-03-03 16:08:11.316 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:08:11.317 - Request from : /127.0.0.1: 12e3d73d-4d7a-4cbe-86cf-749f5b52181d::GET::key7
+2024-03-03 16:08:11.317 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:08:11.318 - Request from : /127.0.0.1: 0701a185-099b-4fb5-8ba4-56338b38f80e::GET::key8
+2024-03-03 16:08:11.318 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:08:11.320 - Request from : /127.0.0.1: a8cdd8e5-aa07-4b3d-a117-dd935d55cac5::GET::key9
+2024-03-03 16:08:11.320 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:08:11.321 - Request from : /127.0.0.1: 7128c4ab-1f73-43ff-bc19-84f24f3835f8::GET::key10
+2024-03-03 16:08:11.322 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:08:11.324 - Request from : /127.0.0.1: f023db44-e989-420c-8d12-a13b848f9d54::DELETE::key1
+2024-03-03 16:08:11.324 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:08:11.326 - Request from : /127.0.0.1: 033a256f-a673-4c7a-9627-9437388e08a7::DELETE::key2
+2024-03-03 16:08:11.326 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:08:11.327 - Request from : /127.0.0.1: 094e559e-8860-4139-ae2a-bd2335a0d89a::DELETE::key3
+2024-03-03 16:08:11.327 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:08:11.328 - Request from : /127.0.0.1: 470dcf1f-0548-4299-9d57-7981196f076f::DELETE::key4
+2024-03-03 16:08:11.328 - Response to : /127.0.0.1: Invalid request format
+2024-03-03 16:08:11.329 - Request from : /127.0.0.1: 10a7498d-82e3-4232-ae44-e4bda86a8f8b::DELETE::key5
+2024-03-03 16:08:11.330 - Response to : /127.0.0.1: Invalid request format
