@@ -22,12 +22,12 @@ public abstract class ClientFactory {
         return putRequest(userInput);
       case "2":
         return getRequest(userInput);
-      // case "3":
-      //   return getAllRequest(userInput);
+      case "3":
+        return getAllRequest(userInput);
       case "4":
         return deleteRequest(userInput);
-      // case "5":
-      //   return deleteAllRequest(userInput);
+      case "5":
+        return deleteAllRequest(userInput);
       default:
         System.out.println("Invalid choice. Please enter your choice between 1 and 5.");
         return null;
@@ -43,9 +43,10 @@ public abstract class ClientFactory {
 
   protected String getAllRequest(BufferedReader userInput) throws IOException {
     String requestId = generateRequestId();
-    System.out.print("Please enter the key (only integer values): ");
-    String key = userInput.readLine();
-    return requestId + "::" + "GET" + "::" + key;
+    //System.out.print("Please enter the key (only integer values): ");
+    //String key = userInput.readLine();
+    String key = "getAll";
+    return requestId + "::" + "GETALL" + "::" + key;
   }
 
   protected String putRequest(BufferedReader userInput) throws IOException {
@@ -62,6 +63,13 @@ public abstract class ClientFactory {
     System.out.print("Please enter the key (integer): ");
     String key = userInput.readLine();
     return requestId + "::" + "DELETE" + "::" + key;
+  }
+
+  protected String deleteAllRequest(BufferedReader userInput) throws IOException {
+  String requestId = generateRequestId();
+  //System.out.print("Please enter the key (integer): ");
+  String key = "deleteAll";
+  return requestId + "::" + "DELETEALL" + "::" + key;
   }
 
   protected static String generateRequestId() {

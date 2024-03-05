@@ -62,7 +62,7 @@ public class TCPClient extends ClientFactory {
     private static void sendUserRequest(PrintWriter out, BufferedReader in, String request) throws IOException {
         try{
             out.println(request); // send request
-            String response = in.readLine(); // reponse  from server
+            String response = in.readLine(); // response  from server
             System.out.println(response);
             ClientLogger.log("Response from server: " + response); //logging  the response in CLientLogger
 
@@ -75,11 +75,11 @@ public class TCPClient extends ClientFactory {
     }
 
     private static void prePopulateKeyValuePairs(BufferedReader in, PrintWriter out) {
-        final int KEYS_COUNT = 10;
+        final int KEYS_COUNT = 5000;
         try {
             // PUT requests
             for (int i = 1; i <= KEYS_COUNT; i++) {
-                String requestId = generateRequestId();
+                String requestId = UUID.randomUUID().toString();
                 String key = Integer.toString(i);
                 String value = Integer.toString(i * 10);
                 String putString = requestId + "::PUT::key" + key + "::value" + value;
@@ -90,23 +90,23 @@ public class TCPClient extends ClientFactory {
             }
             //GET requests
             for (int i = 1; i <= KEYS_COUNT; i++) {
-                String requestId = generateRequestId();
+                String requestId = UUID.randomUUID().toString();
                 String key = Integer.toString(i);
                 String getString = requestId + "::GET::key" + key;
 
                 sendUserRequest(out, in, getString);
-                System.out.println("GET key" + key);
-                ClientLogger.log("GET key" + key);
+                System.out.println("GET pre-populated key" + key);
+                ClientLogger.log("GET pre-populated key" + key);
             }
             //DELETE requests
-            for (int i = 1; i <= KEYS_COUNT-5; i++) {
-                String requestId = generateRequestId();
+            for (int i = 1; i <= 5; i++) {
+                String requestId = UUID.randomUUID().toString();
                 String key = Integer.toString(i);
                 String deleteString = requestId + "::DELETE::key" + key;
 
                 sendUserRequest(out, in, deleteString);
-                System.out.println("DELETED key" + key);
-                ClientLogger.log("DELETED key" + key);
+                System.out.println("DELETED pre-populated key" + key);
+                ClientLogger.log("DELETED pre-populated key" + key);
             }
         } catch (IOException e) {
             System.out.println("Error pre-populating data " + e.getMessage());

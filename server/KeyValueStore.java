@@ -1,13 +1,15 @@
 package server;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.*;
 
 /**
  * This class represents the actual key value data store with all the associated operations that
  * can be performed on it.
  */
-class KeyValueStore {
-  private final HashMap<String, String> store;
+public class KeyValueStore {
+  private Map<String, String> store;
 
   /**
    * Initializes the key value data store.
@@ -43,4 +45,12 @@ class KeyValueStore {
   public synchronized String delete(String key) {
     return store.remove(key);
   }
+
+  public synchronized Set<String> getAllKeys() {
+      return store.keySet();
+  }
+  
+  public synchronized void deleteAll() {
+        store.clear();
+    }
 }

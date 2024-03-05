@@ -101,7 +101,7 @@ public class UDPClient extends ClientFactory {
         try {
             // PUT requests
             for (int i = 1; i <= KEYS_COUNT; i++) {
-                String requestId = generateRequestId();
+                String requestId = UUID.randomUUID().toString();
                 String key = Integer.toString(i);
                 String value = Integer.toString(i * 10);
                 String putString = requestId + "::PUT::key" + key + "::value" + value;
@@ -112,7 +112,7 @@ public class UDPClient extends ClientFactory {
             }
             //GET requests
             for (int i = 1; i <= KEYS_COUNT; i++) {
-                String requestId = generateRequestId();
+                String requestId = UUID.randomUUID().toString();
                 String key = Integer.toString(i);
                 String getString = requestId + "::GET::key" + key;
 
@@ -122,7 +122,7 @@ public class UDPClient extends ClientFactory {
             }
             //DELETE requests
             for (int i = 1; i <= KEYS_COUNT-5; i++) {
-                String requestId = generateRequestId();
+                String requestId = UUID.randomUUID().toString();
                 String key = Integer.toString(i);
                 String deleteString = requestId + "::DELETE::key" + key;
 
