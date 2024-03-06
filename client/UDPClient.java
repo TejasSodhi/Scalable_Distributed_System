@@ -11,6 +11,9 @@ import java.util.zip.Checksum;
  * address.
  */
 public class UDPClient extends ClientFactory {
+
+  private static final int MAX_PACKET_SIZE = 65507;
+
   public void initiateCommunication(String serverIP, int serverPort) {
     try (DatagramSocket dataSocket = new DatagramSocket();
       BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in))) {
@@ -52,52 +55,97 @@ public class UDPClient extends ClientFactory {
     return crc32.getValue();
   }
 
-  private static void sendUserRequest(DatagramSocket dataSocket, String userRequest, InetAddress hostAddress,int serverPort) throws IOException {
+  // private static void sendUserRequest(DatagramSocket dataSocket, String userRequest, InetAddress hostAddress,int serverPort) throws IOException {
 
-    // Parse request information from the request string.
-    String[] requestToken = userRequest.split("::");
-    String action = requestToken[1];
+  //   // Parse request information from the request string.
+  //   String[] requestToken = userRequest.split("::");
+  //   String action = requestToken[1];
 
-    // creating datagram packet
-    long requestId = generateChecksum(userRequest);
-    userRequest = requestId + "::" + userRequest;
+  //   // creating datagram packet
+  //   long requestId = generateChecksum(userRequest);
+  //   //System.out.println("requestID = " + requestId);
+  //   userRequest = requestId + "::" + userRequest;
+  //   System.out.println("userRequest = " + userRequest);
 
-    byte[] m = userRequest.getBytes();
-    DatagramPacket request = new DatagramPacket(m, m.length, hostAddress, serverPort);
+  //   byte[] m = userRequest.getBytes();
+  //   //System.out.println("byte array = " + m);
+  //   DatagramPacket request = new DatagramPacket(m, m.length, hostAddress, serverPort);
 
-    // sending datagram packet
-    dataSocket.send(request);
+  //   // sending datagram packet
+  //   dataSocket.send(request);
 
-    // setting timeout of 5 seconds for udp request and waiting for response from server
-    dataSocket.setSoTimeout(5000);
-    byte[] buffer = new byte[1000];
-    DatagramPacket reply = new DatagramPacket(buffer, buffer.length);
+  //   // setting timeout of 5 seconds for udp request and waiting for response from server
+  //   dataSocket.setSoTimeout(5000);
+  //   byte[] buffer = new byte[10000];
+  //   DatagramPacket reply = new DatagramPacket(buffer, buffer.length);
 
-    try {
-      // receive response
-      dataSocket.receive(reply);
-      String response = new String(reply.getData(), 0, reply.getLength());
-      String[] responseToken = response.split(":");
-      long responseRequestId = Long.parseLong(responseToken[0]);
+  //   try {
+  //     // receive response
+  //     dataSocket.receive(reply);
+  //     String response = new String(reply.getData(), 0, reply.getLength());
+  //     String[] responseToken = response.split(":");
+  //     long responseRequestId = Long.parseLong(responseToken[0]);
 
-      // validating malformed responses from server
-      if(responseRequestId != requestId) {
-        ClientLogger.log("Received Malformed response for request: " + requestId +
-          " ; Received response for " + responseToken[0]);
-      } else {
-        ClientLogger.log("Received response " + response);
-        System.out.println(action+" Reply: " + new String(reply.getData(), 0, reply.getLength()));
-      }
-    } catch(SocketTimeoutException e) {
-      System.out.println("Request timed out.. received no response from server for request: "
-        + requestId);
-      ClientLogger.log("Request timed out.. received no response from server for request: "
-          + requestId);
+  //     // validating malformed responses from server
+  //     if(responseRequestId != requestId) {
+  //       ClientLogger.log("Received Malformed response for request: " + requestId +
+  //         " ; Received response for " + responseToken[0]);
+  //     } else {
+  //       ClientLogger.log("Received response " + response);
+  //       System.out.println(action+" Reply: " + new String(reply.getData(), 0, reply.getLength()));
+  //     }
+  //   } catch(SocketTimeoutException e) {
+  //     System.out.println("Request timed out.. received no response from server for request: "
+  //       + requestId);
+  //     ClientLogger.log("Request timed out.. received no response from server for request: "
+  //         + requestId);
+  //   }
+  // }
+private static void sendUserRequest(DatagramSocket dataSocket, String userRequest, InetAddress hostAddress, int serverPort) throws IOException {
+        
+        String[] requestToken = userRequest.split("::");
+        String action = requestToken[1];
+        
+        long requestId = generateChecksum(userRequest);
+        userRequest = requestId + "::" + userRequest;
+
+        byte[] m = userRequest.getBytes();
+        DatagramPacket request = new DatagramPacket(m, m.length, hostAddress, serverPort);
+        dataSocket.send(request);
+
+        //dataSocket.setSoTimeout(5000);
+        StringBuilder responseBuilder = new StringBuilder();
+        byte[] buffer = new byte[MAX_PACKET_SIZE];
+        DatagramPacket reply = new DatagramPacket(buffer, buffer.length);
+
+        try {
+            while (true) {
+                dataSocket.receive(reply);
+                String response = new String(reply.getData(), 0, reply.getLength());
+                String[] responseToken = response.split(":");
+                long responseRequestId = Long.parseLong(responseToken[0]);
+                if(responseRequestId != requestId) {
+                  ClientLogger.log("Received Malformed response for request: " + requestId +
+                    " ; Received response for " + responseToken[0]);
+                } else {
+                  responseBuilder.append(response);
+                  ClientLogger.log("Received response " + response);
+                  System.out.println(action+" Reply: " + new String(reply.getData(), 0, reply.getLength()));
+                }
+                if (reply.getLength() < MAX_PACKET_SIZE) {
+                    break;
+                }
+            }
+            String completeResponse = responseBuilder.toString();
+            System.out.println("Complete Response: " + completeResponse);
+        } catch (SocketTimeoutException e) {
+            System.out.println("Request timed out.. received no response from server.");
+        }
     }
-  }
 
-  private static void prePopulateKeyValuePairs(DatagramSocket aSocket, InetAddress aHost, int serverPort) {
-        final int KEYS_COUNT = 10;
+
+  private static void prePopulateKeyValuePairs(DatagramSocket socket, InetAddress hostAddress, int serverPort) {
+        final int KEYS_COUNT = 10000;
         try {
             // PUT requests
             for (int i = 1; i <= KEYS_COUNT; i++) {
@@ -106,7 +154,7 @@ public class UDPClient extends ClientFactory {
                 String value = Integer.toString(i * 10);
                 String putString = requestId + "::PUT::key" + key + "::value" + value;
 
-                sendUserRequest(aSocket, putString, aHost, serverPort);
+                sendUserRequest(socket, putString, hostAddress, serverPort);
                 System.out.println("Pre-populated key" + key + " with value " + value);
                 ClientLogger.log("Pre-populated key" + key + " with value " + value);
             }
@@ -116,17 +164,17 @@ public class UDPClient extends ClientFactory {
                 String key = Integer.toString(i);
                 String getString = requestId + "::GET::key" + key;
 
-                sendUserRequest(aSocket, getString, aHost, serverPort);
+                sendUserRequest(socket, getString, hostAddress, serverPort);
                 System.out.println("GET Pre-populated key" + key);
                 ClientLogger.log("GET Pre-populated key" + key);
             }
             //DELETE requests
-            for (int i = 1; i <= KEYS_COUNT-5; i++) {
+            for (int i = 1; i <= 5; i++) {
                 String requestId = UUID.randomUUID().toString();
                 String key = Integer.toString(i);
                 String deleteString = requestId + "::DELETE::key" + key;
 
-                sendUserRequest(aSocket, deleteString, aHost, serverPort);
+                sendUserRequest(socket, deleteString, hostAddress, serverPort);
                 System.out.println("DELETED Pre-populated key" + key);
                 ClientLogger.log("DELETED Pre-populated key" + key);
             }

@@ -14,6 +14,7 @@ public abstract class ClientFactory {
     System.out.println("3. GETALL");
     System.out.println("4. DELETE");
     System.out.println("5. DELETEALL");
+    System.out.println("6. GETALL-FOR-UDP");
     System.out.print("Enter from the above options only (1/2/3/4/5): ");
 
     String option = userInput.readLine();
@@ -28,6 +29,8 @@ public abstract class ClientFactory {
         return deleteRequest(userInput);
       case "5":
         return deleteAllRequest(userInput);
+      case "6":
+        return getAllRequest(userInput);
       default:
         System.out.println("Invalid choice. Please enter your choice between 1 and 5.");
         return null;

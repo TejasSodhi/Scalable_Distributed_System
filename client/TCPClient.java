@@ -61,6 +61,9 @@ public class TCPClient extends ClientFactory {
 
     private static void sendUserRequest(PrintWriter out, BufferedReader in, String request) throws IOException {
         try{
+            //String[] requestToken = request.split("::");
+            //request = "N/A" + "::" + request;
+
             out.println(request); // send request
             String response = in.readLine(); // response  from server
             System.out.println(response);

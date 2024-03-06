@@ -20,12 +20,16 @@ public abstract class ServerFactory {
     if (tokens.length < 3) {
       return "Invalid request format";
     }
-
+    // if(tokens[0] != "N/A") {
+    //   String checkSum = tokens[0];
+    // }
+    //String checksum = tokens[0] != "N/A" ? tokens[0] : "NoChecksum";
     String requestID = tokens[0];
     String operation = tokens[1];
     String key = tokens[2];
-    System.out.println("key = "  + key);
+    //System.out.println("key = "  + key);
     String value = tokens.length > 3 ? tokens[3] : null;
+    //System.out.println("value = "  + value);
 
     switch (operation.toUpperCase()) {
       case "PUT":
@@ -40,6 +44,8 @@ public abstract class ServerFactory {
         return deleteRequest(requestID, key);
       case "DELETEALL":
         return deleteAllRequest(requestID);
+      case "GETALLFORUDP":
+        return getAllRequestForUDP(requestID);
       default:
         return requestID + ": Unsupported operation: " + operation;
     }
@@ -48,6 +54,7 @@ public abstract class ServerFactory {
   protected String getRequest(String requestID, String key) throws IOException {
     String getValue = keyValueStore.get(key);
     System.out.println("value = " + getValue);
+
     if(getValue != null) {
       String keyPresent = requestID + ": Value for key '" + key + "': " + getValue;
       return keyPresent;
@@ -55,9 +62,9 @@ public abstract class ServerFactory {
     else return requestID + ": Key '" + key + "' not found";
   }
 
-  protected String getAllRequest(String requestID) throws IOException {
+protected String getAllRequest(String requestID) throws IOException {
   StringBuilder responseBuilder = new StringBuilder();
-  responseBuilder.append(requestID).append(": ");
+  responseBuilder.append(requestID).append(":\n"); // Start with a newline for better formatting
 
   // Get all keys using keySet()
   Set<String> allKeys = keyValueStore.getAllKeys();
@@ -68,21 +75,51 @@ public abstract class ServerFactory {
 
   for (String key : allKeys) {
     String value = keyValueStore.get(key);
-    responseBuilder.append("(").append(key).append(", ").append(value).append("), ");
+    responseBuilder.append(key).append(" : ").append(value).append("\n"); // Append key-value pair on a newline
   }
 
-  String response = responseBuilder.substring(0, responseBuilder.length() - 2);
-  return response;
+  return responseBuilder.toString(); // Return the complete response with newlines
 }
 
 
+protected String getAllRequestForUDP(String requestID) throws IOException {
+    StringBuilder responseBuilder = new StringBuilder();
+    responseBuilder.append(requestID).append(":\n");
+
+    Set<String> allKeys = keyValueStore.getAllKeys();
+
+    if (allKeys.isEmpty()) {
+        return requestID + ": Key value store is empty";
+    }
+    List<String> allKeysList = new ArrayList<>(allKeys);
+    final int CHUNK_SIZE = 10; // Defining the chunk size
+
+    for (int i = 0; i < allKeysList.size(); i += CHUNK_SIZE) {
+        int end = Math.min(i + CHUNK_SIZE, allKeysList.size());
+        List<String> keysChunk = allKeysList.subList(i, end);
+        StringBuilder chunkBuilder = new StringBuilder();
+
+        for (String key : keysChunk) {
+            String value = keyValueStore.get(key);
+            chunkBuilder.append(key).append(" : ").append(value).append("\n");
+        }
+
+        String chunkResponse = chunkBuilder.toString();
+        responseBuilder.append(chunkResponse);
+    }
+
+    return responseBuilder.toString();
+}
+
 
   protected String putRequest(String requestID, String key, String value) throws IOException {
+      System.out.println("** Inside putRequest: key=" + key + ", value=" + value);
       if (value == null) {
         return requestID + ": PUT operation requires a value";
       }
       keyValueStore.put(key, value);
       String successMessage = requestID + ": Key '" + key + "' stored with value '" + value + "'";
+      System.out.println("successMessage = "  + successMessage);
       return successMessage;
   }
 
