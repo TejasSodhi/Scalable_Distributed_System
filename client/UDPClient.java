@@ -90,7 +90,7 @@ private static void sendUserRequest(DatagramSocket dataSocket, String userReques
                 }
             }
             String completeResponse = responseBuilder.toString();
-            System.out.println("Complete Response: " + completeResponse);
+            //System.out.println("Complete Response: " + completeResponse);
         } catch (SocketTimeoutException e) {
             System.out.println("Request timed out.. received no response from server.");
         }
