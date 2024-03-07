@@ -53,4 +53,9 @@ public class KeyValueStore {
   public synchronized void deleteAll() {
         store.clear();
     }
+  
+  @Override
+  public String toString() {
+    return store.toString();
+  }
 }

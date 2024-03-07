@@ -44,8 +44,6 @@ public abstract class ServerFactory {
         return deleteRequest(requestID, key);
       case "DELETEALL":
         return deleteAllRequest(requestID);
-      case "GETALLFORUDP":
-        return getAllRequestForUDP(requestID);
       default:
         return requestID + ": Unsupported operation: " + operation;
     }
@@ -63,53 +61,54 @@ public abstract class ServerFactory {
   }
 
 protected String getAllRequest(String requestID) throws IOException {
-  StringBuilder responseBuilder = new StringBuilder();
-  responseBuilder.append(requestID).append(":\n"); // Start with a newline for better formatting
+  // StringBuilder responseBuilder = new StringBuilder();
+  // responseBuilder.append(requestID).append(":-"); // Start with a newline for better formatting
 
-  // Get all keys using keySet()
-  Set<String> allKeys = keyValueStore.getAllKeys();
+  // // Get all keys using keySet()
+  // Set<String> allKeys = keyValueStore.getAllKeys();
 
-  if (allKeys.isEmpty()) {
-    return requestID + ": Key value store is empty";
-  }
+  // if (allKeys.isEmpty()) {
+  //   return requestID + ": Key value store is empty";
+  // }
 
-  for (String key : allKeys) {
-    String value = keyValueStore.get(key);
-    responseBuilder.append(key).append(" : ").append(value).append("\n"); // Append key-value pair on a newline
-  }
+  // for (String key : allKeys) {
+  //   String value = keyValueStore.get(key);
+  //   responseBuilder.append(key).append(" : ").append(value); // Append key-value pair on a newline
+  // }
 
-  return responseBuilder.toString(); // Return the complete response with newlines
+  // return responseBuilder.toString(); // Return the complete response with newlines
+  return keyValueStore.toString();
 }
 
 
-protected String getAllRequestForUDP(String requestID) throws IOException {
-    StringBuilder responseBuilder = new StringBuilder();
-    responseBuilder.append(requestID).append(":\n");
+// protected String getAllRequestForUDP(String requestID) throws IOException {
+//     StringBuilder responseBuilder = new StringBuilder();
+//     responseBuilder.append(requestID).append(":\n");
 
-    Set<String> allKeys = keyValueStore.getAllKeys();
+//     Set<String> allKeys = keyValueStore.getAllKeys();
 
-    if (allKeys.isEmpty()) {
-        return requestID + ": Key value store is empty";
-    }
-    List<String> allKeysList = new ArrayList<>(allKeys);
-    final int CHUNK_SIZE = 10; // Defining the chunk size
+//     if (allKeys.isEmpty()) {
+//         return requestID + ": Key value store is empty";
+//     }
+//     List<String> allKeysList = new ArrayList<>(allKeys);
+//     final int CHUNK_SIZE = 10; // Defining the chunk size
 
-    for (int i = 0; i < allKeysList.size(); i += CHUNK_SIZE) {
-        int end = Math.min(i + CHUNK_SIZE, allKeysList.size());
-        List<String> keysChunk = allKeysList.subList(i, end);
-        StringBuilder chunkBuilder = new StringBuilder();
+//     for (int i = 0; i < allKeysList.size(); i += CHUNK_SIZE) {
+//         int end = Math.min(i + CHUNK_SIZE, allKeysList.size());
+//         List<String> keysChunk = allKeysList.subList(i, end);
+//         StringBuilder chunkBuilder = new StringBuilder();
 
-        for (String key : keysChunk) {
-            String value = keyValueStore.get(key);
-            chunkBuilder.append(key).append(" : ").append(value).append("\n");
-        }
+//         for (String key : keysChunk) {
+//             String value = keyValueStore.get(key);
+//             chunkBuilder.append(key).append(" : ").append(value).append("\n");
+//         }
 
-        String chunkResponse = chunkBuilder.toString();
-        responseBuilder.append(chunkResponse);
-    }
+//         String chunkResponse = chunkBuilder.toString();
+//         responseBuilder.append(chunkResponse);
+//     }
 
-    return responseBuilder.toString();
-}
+//     return responseBuilder.toString();
+// }
 
 
   protected String putRequest(String requestID, String key, String value) throws IOException {
