@@ -10,6 +10,9 @@ import java.util.UUID;
 import java.util.zip.CRC32;
 import java.util.zip.Checksum;
 
+/**
+ * This represents the TCP client which communicates to the TCP server which is connection oriented
+ */
 public class TCPClient extends ClientFactory {
     public void initiateCommunication(String serverIP, int serverPort) {
         Socket socket = null;
@@ -61,8 +64,6 @@ public class TCPClient extends ClientFactory {
 
     private static void sendUserRequest(PrintWriter out, BufferedReader in, String request) throws IOException {
         try{
-            //String[] requestToken = request.split("::");
-            //request = "N/A" + "::" + request;
 
             out.println(request); // send request
             String response = in.readLine(); // response  from server
@@ -78,38 +79,38 @@ public class TCPClient extends ClientFactory {
     }
 
     private static void prePopulateKeyValuePairs(BufferedReader in, PrintWriter out) {
-        final int KEYS_COUNT = 5000;
+        final int KEYS_COUNT = 1000;
         try {
             // PUT requests
             for (int i = 1; i <= KEYS_COUNT; i++) {
                 String requestId = UUID.randomUUID().toString();
                 String key = Integer.toString(i);
                 String value = Integer.toString(i * 10);
-                String putString = requestId + "::PUT::key" + key + "::value" + value;
+                String putString = requestId + " ==PUT==" + key + "== " + value;
 
                 sendUserRequest(out, in, putString);
-                System.out.println("Pre-populated key" + key + " with value " + value);
-                ClientLogger.log("Pre-populated key" + key + " with value " + value);
+                System.out.println("Pre-populated key: " + key + " with value: " + value);
+                ClientLogger.log("Pre-populated key: " + key + " with value: " + value);
             }
             //GET requests
             for (int i = 1; i <= KEYS_COUNT; i++) {
                 String requestId = UUID.randomUUID().toString();
                 String key = Integer.toString(i);
-                String getString = requestId + "::GET::key" + key;
+                String getString = requestId + " ==GET==" + key;
 
                 sendUserRequest(out, in, getString);
-                System.out.println("GET pre-populated key" + key);
-                ClientLogger.log("GET pre-populated key" + key);
+                System.out.println("GET pre-populated key: " + key);
+                ClientLogger.log("GET pre-populated key: " + key);
             }
             //DELETE requests
             for (int i = 1; i <= 5; i++) {
                 String requestId = UUID.randomUUID().toString();
                 String key = Integer.toString(i);
-                String deleteString = requestId + "::DELETE::key" + key;
+                String deleteString = requestId + " ==DELETE==" + key;
 
                 sendUserRequest(out, in, deleteString);
-                System.out.println("DELETED pre-populated key" + key);
-                ClientLogger.log("DELETED pre-populated key" + key);
+                System.out.println("DELETED pre-populated key: " + key);
+                ClientLogger.log("DELETED pre-populated key: " + key);
             }
         } catch (IOException e) {
             System.out.println("Error pre-populating data " + e.getMessage());

@@ -9,6 +9,6 @@ public class ServerAppTCP {
 
     int tcpPortNumber = Integer.parseInt(args[0]);
     TCPServer tcpServer = new TCPServer();
-    tcpServer.listen(tcpPortNumber);
+    tcpServer.initiateCommunication(tcpPortNumber);
   }
 }

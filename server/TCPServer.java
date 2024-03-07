@@ -8,13 +8,13 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * This represents a TCP based server which listens at a given port number for TCP client requests.
+ * This represents a TCP based server which listens from a specific TCP client.
  */
 public class TCPServer extends ServerFactory {
 
     static final ServerLogger serverLogger = new ServerLogger();
-    //@Override
-    public void listen(int portNumber) {
+
+    public void initiateCommunication(int portNumber) {
         try (ServerSocket serverSocket = new ServerSocket(portNumber)) {
 
             System.out.println("Server is listening on port " + portNumber);
@@ -43,7 +43,6 @@ public class TCPServer extends ServerFactory {
         }
     }
 
-    //@Override
     public void handleRequest(Socket clientSocket) throws IOException {
         try (
           BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
@@ -65,7 +64,7 @@ public class TCPServer extends ServerFactory {
                 serverLogger.logResponse(clientSocket.getInetAddress(),response);
             }
         } catch (IOException e) {
-            // Log information about timed out requests.
+            // Logging info about timeouts
             System.err.println("Timeout occurred. Server did not respond within the specified time.");
             serverLogger.logMalformedRequest(clientSocket.getInetAddress());
 

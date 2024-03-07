@@ -9,6 +9,6 @@ public class ServerAppUDP {
 
       int udpPortNumber = Integer.parseInt(args[0]);
       UDPServer server = new UDPServer();
-      server.listen(udpPortNumber);
+      server.initiateCommunication(udpPortNumber);
     }
 }
