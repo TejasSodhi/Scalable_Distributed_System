@@ -2,20 +2,26 @@ package server;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
+import shared.KeyValueStoreService;
+
 public class KeyValueStoreImpl implements KeyValueStoreService {
 
-    private Map<String, String> store;
+    //static final ServerLogger serverLogger = new ServerLogger();
+
+    private ConcurrentHashMap<String, String> store;
 
     public KeyValueStoreImpl() {
-        this.store = new HashMap<>();
+        this.store = new ConcurrentHashMap<>();
     }
 
     public synchronized String put(String key, String value) throws RemoteException {
         store.put(key, value);
+        //serverLogger.log("Key '" + key + "' stored with value '" + value + "'");
         return "Key '" + key + "' stored with value '" + value + "'";
     }
 
@@ -34,7 +40,8 @@ public class KeyValueStoreImpl implements KeyValueStoreService {
         for (Map.Entry<String, String> entry : store.entrySet()) {
             response.append(entry.getKey()).append(" : ").append(entry.getValue()).append("\n");
         }
-        return response.toString();
+        //System.out.println("response of getall = "  + response);
+        return response.length() > 0 ? response.toString() : "No keys in the store.";
     }
 
     public synchronized String deleteAll() throws RemoteException {

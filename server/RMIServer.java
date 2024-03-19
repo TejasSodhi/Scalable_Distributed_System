@@ -9,14 +9,15 @@ import java.util.Map;
 
 import shared.KeyValueStoreService;
 
-
+ 
 public class RMIServer {
     public static void main(String[] args) {
         try {
+            int port = Integer.parseInt(args[0]);
             KeyValueStoreImpl keyValueStore = new KeyValueStoreImpl();
             KeyValueStoreService stub = (KeyValueStoreService) UnicastRemoteObject.exportObject(keyValueStore, 0);
 
-            Registry registry = LocateRegistry.createRegistry(1099);
+            Registry registry = LocateRegistry.createRegistry(port);
             registry.rebind("KeyValueStoreService", stub);
 
             System.out.println("Server connected");
