@@ -84,3 +84,57 @@ IoT Device Communication:
 --In Internet of Things (IoT) scenarios, where lightweight devices communicate with a central server, single-threaded client-server applications can be suitable.
 --IoT devices often have limited resources, and a single-threaded server can efficiently handle communication with multiple devices without the overhead of managing multiple threads.
 --For example, a smart home system where sensors send data to a central server for monitoring and control purposes could utilize a single-threaded server to handle incoming requests from various devices.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+Project 2 -- Implementing RMI
+
+
+* Compile the code using `javac shared/*.java server/*.java client/*.java`
+* To run the 
+  * RMI server `java server.RMIServer <port-number>`
+* To run the 
+  * RMI client `java client/RMIClient <host-name> <port-number>`
+
+# EXECUTIVE SUMMARY
+
+# Assignment Overview
+The purpose of this assignment was to develop a client-server application using Java RMI (Remote Method Invocation) for communication between the client and the server. 
+Remote Method Invocation (RMI) allows us to get a reference to an object on a remote host and use it as if it were on our virtual machine. We can invoke methods on the remote objects, passing real objects as arguments and getting real objects as returned values.(Similar to Remote Procedure Call (RPC) in C). RMI uses object serialization, dynamic class loading and security manager to transport Java classes safely. Thus we can ship both code and data around the network. RMI is multithreaded already but is not thread-safe. A method dispatched by the RMI runtime to a remote object implementation may or may not execute in a separate thread. The RMI runtime makes no guarantees with respect to mapping remote object invocations to threads. Since remote method invocation on the same remote object may execute concurrently, a remote object implementation needs to make sure its implementation is thread-safe.
+Stub is the local code that serves as a proxy for a remote object. The skeleton is another proxy that lives on the same host as the real object. The skeleton receives remote method invocations from the stub and passes them on to the object.
+
+
+The scope of the assignment involved implementing a simple key-value store where the client could perform operations such as PUT, GET, GETALL, DELETE, and DELETEALL on the server's key-value store. The assignment aimed to demonstrate understanding of RMI, multi-threading, and basic client-server architecture.
+
+
+# Technical Impression
+During the assignment, I gained practical experience in implementing a distributed application using Java RMI.
+
+While implementing the Remote Method Invocation (RMI) I followed the following steps :
+1) Create the remote interface
+2) Provide the implementation of the remote interface
+3) Compile the implementation class and create the stub and skeleton objects
+5) Create and start the server application
+6) Create and start the client application
+
+Challenges I faced during this project: 
+-- I encountered challenges in properly setting up the RMI registry, defining the remote interface, and handling remote method invocations. 
+-- Implementing thread safe functionality to handle multiple client requests concurrently required careful consideration of synchronization and use of Concurrent HashMap.
+
+RMI has an inbuild thread pool and is multhreaded that is it can handle concurrent requests simultaneously.
+RMI automatically will execute each client in a separate thread.  There will only be one instance of the server object no matter how many clients, so we need to make sure that shared data is synchronized appropriately.  In particular, any data that may be accessed by more than one client at a time must be synchronized. 
+When a server object is exported through UnicastRemoteObject, a server socket is created in a new thread either on specified port or default port chosen by RMI which eventually blocks in accept call. The invocation of remote operation on client stub initiates a connection request with the remote server. This is usually done by the tranport layer in client RMI by using the remote reference contained by the stub. This remote reference contains the host, port on which the remote object is exported.
+Once the server receives the connection request, it creates a new thread and forwards the new socket returned by accept call to it. After forwarding the new socket to the object in a new thread, the listener thread again blocks in accept call to service another client request. Now server reads remote objectid, method hash value, marshalled parameters from the socket written by the client and finally dispatches the operation to the appropriate remote object.
+Once client finishes the remote operation, tranport layer in the client RMI will not close this connection. It will keep it alive for some time before completely closing it.
+
+So if multiple clients call the server, all the method invocations can happen simultaneously, causing race conditions. The same
+method may also be run by more than one thread on behalf of one or more clients. Hence we must write the server to be thread-safe.
+
+To make the concurrent requests thread safe I make use of the keyword syncronized in the interface implementation function.
+The synchronized keyword locks the resources to a thread so that no other thread can access it at a time. The synchronized keyword prevents the program statement from getting reordered. The synchronized keyword ensures the locking and unlocking of threads before and after getting inside the synchronized block. 
+Moreover for protection over edit data I make use of Concurrent HashMap. ConcurrentHashMap is an enhancement of HashMap as we know that while dealing with Threads in our application. ConcurrentHashMap is a thread-safe implementation of the Map interface in Java, which means multiple threads can access it simultaneously without any synchronization issues. It’s part of the java.util.concurrent package. One of the key features of the ConcurrentHashMap is that it provides fine-grained locking, meaning that it locks only the portion of the map being modified, rather than the entire map. This makes it highly scalable and efficient for concurrent operations. Additionally, the ConcurrentHashMap provides various methods for atomic operations such as putIfAbsent(), replace(), and remove().
+In ConcurrentHashMap, at a time any number of threads can perform retrieval operation but for updated in the object, the thread must lock the particular segment in which the thread wants to operate. This type of locking mechanism is known as Segment locking or bucket locking.
+
+
+Overall, the assignment provided valuable insights into distributed systems, RMI communication, and concurrent programming. In the future, improvements could include better error handling, enhanced logging mechanisms, and optimization for scalability and performance.
