@@ -326,3 +326,40 @@ key10 : value100
 2024-03-14 09:09:06.924 - Key 'key3' not found
 2024-03-14 09:09:06.925 - Key 'key4' not found
 2024-03-14 09:09:06.926 - Key 'key5' not found
+2024-03-19 10:24:33.208 - Key 'key1' stored with value 'value10'
+2024-03-19 10:24:33.222 - Key 'key2' stored with value 'value20'
+2024-03-19 10:24:33.223 - Key 'key3' stored with value 'value30'
+2024-03-19 10:24:33.224 - Key 'key4' stored with value 'value40'
+2024-03-19 10:24:33.225 - Key 'key5' stored with value 'value50'
+2024-03-19 10:24:33.226 - Key 'key6' stored with value 'value60'
+2024-03-19 10:24:33.227 - Key 'key7' stored with value 'value70'
+2024-03-19 10:24:33.228 - Key 'key8' stored with value 'value80'
+2024-03-19 10:24:33.228 - Key 'key9' stored with value 'value90'
+2024-03-19 10:24:33.229 - Key 'key10' stored with value 'value100'
+2024-03-19 10:24:33.230 - value10
+2024-03-19 10:24:33.231 - value20
+2024-03-19 10:24:33.232 - value30
+2024-03-19 10:24:33.233 - value40
+2024-03-19 10:24:33.233 - value50
+2024-03-19 10:24:33.234 - value60
+2024-03-19 10:24:33.235 - value70
+2024-03-19 10:24:33.235 - value80
+2024-03-19 10:24:33.236 - value90
+2024-03-19 10:24:33.237 - value100
+2024-03-19 10:24:33.238 - Deleted key 'key1' with value 'value10'
+2024-03-19 10:24:33.239 - Deleted key 'key2' with value 'value20'
+2024-03-19 10:24:33.240 - Deleted key 'key3' with value 'value30'
+2024-03-19 10:24:33.241 - Deleted key 'key4' with value 'value40'
+2024-03-19 10:24:33.241 - Deleted key 'key5' with value 'value50'
+2024-03-19 10:24:59.610 - Key 'key25' stored with value 'value250'
+2024-03-19 10:25:13.519 - value250
+2024-03-19 10:25:20.327 - key25 : value250
+key6 : value60
+key9 : value90
+key7 : value70
+key8 : value80
+key10 : value100
+
+2024-03-19 10:25:34.497 - Deleted key 'key25' with value 'value250'
+2024-03-19 10:25:41.980 - All key-value pairs deleted successfully
+2024-03-19 10:25:46.395 - No keys in the store.
