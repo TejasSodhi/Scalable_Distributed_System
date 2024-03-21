@@ -22,11 +22,16 @@ public class RMIClient {
             KeyValueStoreService stub = (KeyValueStoreService) registry.lookup("KeyValueStoreService");
 
             // Pre-populate  the store with some data
-            prePopulateKeyValuePairs(stub);
+            BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
+
+            System.out.println("Do you want to prepopulate the key-value pairs? (yes/no)");
+            String prepopulateChoice = userInput.readLine().toLowerCase();
+            if (prepopulateChoice.equals("yes")) {
+                prePopulateKeyValuePairs(stub);
+            }
 
             while (true) {
 
-                BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
                 System.out.println("The application can add keys and repective values, get all the values for a particular key and delete any particular key value");
                 System.out.println("Which functionality do you want to use?");
                 System.out.println("1. PUT");
