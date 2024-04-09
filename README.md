@@ -138,3 +138,48 @@ In ConcurrentHashMap, at a time any number of threads can perform retrieval oper
 
 
 Overall, the assignment provided valuable insights into distributed systems, RMI communication, and concurrent programming. In the future, improvements could include better error handling, enhanced logging mechanisms, and optimization for scalability and performance.
+
+
+--------------------------------------------------------------------------------------------------------------------------
+
+Project 3 -- Implementing 2PC
+
+
+* Compile the code using `javac shared/*.java server/*.java client/*.java`
+* To run the 
+  * RMI server `java server.RMIServer <port-number>`
+* To run the 
+  * RMI client `java client/RMIClient_2PC <host-name> <port-number>`
+
+
+# EXECUTIVE SUMMARY
+
+# Assignment Overview
+The assignment aims to design and implement a distributed key-value store system utilizing Java RMI (Remote Method Invocation) and a Two-Phase Commit (2PC) protocol. The primary objective is to create a fault-tolerant and scalable architecture where clients can interact with multiple server replicas to perform opertaions such as PUT, DELETE, and GET on the key-value store. The scope involves setting up a coordinator responsible for orchestrating the 2PC protocol to ensure data consistency across all replicas. Each server replica maintains a synchronized copy of the key-value data, and the coordinator manages transactional integrity by coordinating prepare, commit, and abort phases. The assignment challenges the understanding of distributed systems principles, including fault tolerance, consistency, and coordination mechanisms. By implementing the 2PC protocol and integrating Java RMI for communication, the assignment provides a comprehensive learning experience in designing and deploying distributed systems for real-world applications.
+
+# Technical Impression:
+During the assignment, I gained insights into distributed systems architecture and the complexities involved in ensuring data consistency and fault tolerance. Implementing the 2PC protocol provided hands-on experience in coordinating distributed transactions and handling failure scenarios.  
+
+The Two-Phase Commit (2PC) protocol is a distributed algorithm used to ensure atomicity and consistency in distributed transactions. It involves two phases: the Prepare phase and the Commit phase.
+
+-- Prepare Phase:
+In the Prepare phase, the coordinator sends a prepare request to all participating servers (replicaStubs).
+Each server checks if it can commit the transaction successfully. If so, it replies with a "Yes" vote. Otherwise, it replies with a "No" vote.
+If any server votes "No" or if there is a failure in communication, the coordinator aborts the transaction.
+
+-- Commit Phase:
+If all servers vote "Yes" during the Prepare phase, the coordinator sends a commit request to all servers.
+Upon receiving the commit request, each server commits the transaction and acknowledges the coordinator.
+If any server fails to commit or there is a network failure, the coordinator can initiate a rollback by sending an abort request to all servers.
+
+-- The 2PC protocol ensures that either all servers commit the transaction or none do. This prevents partial updates and maintains data integrity.
+-- By synchronizing the commit or rollback across all servers, the protocol ensures consistency in the distributed system.
+-- The protocol handles failures gracefully, allowing for recovery from server crashes or network partitions.
+-- The coordinator orchestrates the entire process, ensuring that all servers agree on the transaction outcome before proceeding.
+
+# Challenges:
+-- Integrating Java RMI for communication between client, coordinator, and server components was both challenging and enlightening, requiring careful consideration of remote method invocations and exception handling.
+-- During the Prepare phase, if any participant fails to respond or is slow to respond, it can cause the coordinator to wait indefinitely. I was facing this issue during the initial phase of my assignment
+
+
+Overall, the assignment highlighted the importance of robust error handling, scalability, and performance optimization in distributed systems design.
