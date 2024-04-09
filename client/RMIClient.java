@@ -32,7 +32,7 @@ public class RMIClient {
 
             while (true) {
 
-                System.out.println("The application can add keys and repective values, get all the values for a particular key and delete any particular key value");
+                System.out.println("The application can add keys and respective values, get all the values for a particular key and delete any particular key value");
                 System.out.println("Which functionality do you want to use?");
                 System.out.println("1. PUT");
                 System.out.println("2. GET");

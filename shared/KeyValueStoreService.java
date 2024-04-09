@@ -14,4 +14,12 @@ public interface KeyValueStoreService extends Remote {
     String getAll() throws RemoteException;
 
     String deleteAll() throws RemoteException;
+
+    String preparePut(String key, String value) throws RemoteException;
+
+    String prepareDelete(String key) throws RemoteException;
+
+    void commitPut(String key, String value) throws RemoteException;
+
+    void commitDelete(String key) throws RemoteException;
 }
