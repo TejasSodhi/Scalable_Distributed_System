@@ -539,3 +539,110 @@ key7 : value70
 key8 : value80
 key10 : value100
 
+2024-04-09 18:06:50.180 - Key 'key1' stored with value 'value10'
+2024-04-09 18:06:50.187 - Key 'key2' stored with value 'value20'
+2024-04-09 18:06:50.188 - Key 'key3' stored with value 'value30'
+2024-04-09 18:06:50.188 - Key 'key4' stored with value 'value40'
+2024-04-09 18:06:50.189 - Key 'key5' stored with value 'value50'
+2024-04-09 18:06:50.190 - Key 'key6' stored with value 'value60'
+2024-04-09 18:06:50.191 - Key 'key7' stored with value 'value70'
+2024-04-09 18:06:50.191 - Key 'key8' stored with value 'value80'
+2024-04-09 18:06:50.192 - Key 'key9' stored with value 'value90'
+2024-04-09 18:06:50.192 - Key 'key10' stored with value 'value100'
+2024-04-09 18:06:50.193 - value10
+2024-04-09 18:06:50.194 - value20
+2024-04-09 18:06:50.194 - value30
+2024-04-09 18:06:50.195 - value40
+2024-04-09 18:06:50.195 - value50
+2024-04-09 18:06:50.196 - value60
+2024-04-09 18:06:50.196 - value70
+2024-04-09 18:06:50.197 - value80
+2024-04-09 18:06:50.197 - value90
+2024-04-09 18:06:50.198 - value100
+2024-04-09 18:06:50.200 - Deleted key 'key1'
+2024-04-09 18:06:50.200 - Deleted key 'key2'
+2024-04-09 18:06:50.201 - Deleted key 'key3'
+2024-04-09 18:06:50.201 - Deleted key 'key4'
+2024-04-09 18:06:50.202 - Deleted key 'key5'
+2024-04-09 18:06:59.274 - key6 : value60
+key9 : value90
+key7 : value70
+key8 : value80
+key10 : value100
+
+2024-04-09 18:07:24.581 - Key 'key1' stored with value 'value10'
+2024-04-09 18:07:24.587 - Key 'key2' stored with value 'value20'
+2024-04-09 18:07:24.588 - Key 'key3' stored with value 'value30'
+2024-04-09 18:07:24.589 - Key 'key4' stored with value 'value40'
+2024-04-09 18:07:24.589 - Key 'key5' stored with value 'value50'
+2024-04-09 18:07:24.590 - Key 'key6' stored with value 'value60'
+2024-04-09 18:07:24.591 - Key 'key7' stored with value 'value70'
+2024-04-09 18:07:24.591 - Key 'key8' stored with value 'value80'
+2024-04-09 18:07:24.592 - Key 'key9' stored with value 'value90'
+2024-04-09 18:07:24.593 - Key 'key10' stored with value 'value100'
+2024-04-09 18:07:24.593 - value10
+2024-04-09 18:07:24.594 - value20
+2024-04-09 18:07:24.594 - value30
+2024-04-09 18:07:24.595 - value40
+2024-04-09 18:07:24.595 - value50
+2024-04-09 18:07:24.596 - value60
+2024-04-09 18:07:24.597 - value70
+2024-04-09 18:07:24.597 - value80
+2024-04-09 18:07:24.598 - value90
+2024-04-09 18:07:24.598 - value100
+2024-04-09 18:07:24.599 - Deleted key 'key1'
+2024-04-09 18:07:24.600 - Deleted key 'key2'
+2024-04-09 18:07:24.600 - Deleted key 'key3'
+2024-04-09 18:07:24.600 - Deleted key 'key4'
+2024-04-09 18:07:24.601 - Deleted key 'key5'
+2024-04-09 18:07:34.194 - value60
+2024-04-09 18:07:53.130 - Key 'key5' stored with value '50'
+2024-04-09 18:07:59.757 - key5 : 50
+key6 : value60
+key9 : value90
+key7 : value70
+key8 : value80
+key10 : value100
+
+2024-04-09 18:08:12.576 - Deleted key 'key5'
+2024-04-09 18:08:16.763 - key6 : value60
+key9 : value90
+key7 : value70
+key8 : value80
+key10 : value100
+
+2024-04-09 18:08:48.181 - key6 : value60
+key9 : value90
+key7 : value70
+key8 : value80
+key10 : value100
+
+2024-04-09 18:08:59.970 - Key 'key5' stored with value 'value5000'
+2024-04-09 18:09:03.440 - key5 : value5000
+key6 : value60
+key9 : value90
+key7 : value70
+key8 : value80
+key10 : value100
+
+2024-04-09 18:09:18.381 - key5 : value5000
+key6 : value60
+key9 : value90
+key7 : value70
+key8 : value80
+key10 : value100
+
+2024-04-09 18:09:42.213 - Deleted key 'key5'
+2024-04-09 18:09:45.267 - key6 : value60
+key9 : value90
+key7 : value70
+key8 : value80
+key10 : value100
+
+2024-04-09 18:09:59.088 - Key 'key5' not found
+2024-04-09 18:10:07.489 - key6 : value60
+key9 : value90
+key7 : value70
+key8 : value80
+key10 : value100
+

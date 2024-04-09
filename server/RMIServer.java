@@ -28,14 +28,10 @@ public class RMIServer {
                 serverList.add(server); // Add server to the list of servers
                 KeyValueStoreService stub = (KeyValueStoreService) UnicastRemoteObject.exportObject(server, 0);
                 registry = LocateRegistry.createRegistry(port + i);
-                registry.rebind("KeyValueStoreService", stub);
+                registry.rebind("KeyValueStoreService" + (i+1), stub);
             }
             System.out.println("Servers connected");
-            try {
-                Arrays.asList(registry.list()).forEach(System.out::println);
-            } catch  (RemoteException e) {
-
-            }
+            //System.out.println("server list = " + serverList);
         } catch (RemoteException e) {
             System.err.println("Server exception: " + e.toString());
             e.printStackTrace();

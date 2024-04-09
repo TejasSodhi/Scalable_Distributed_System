@@ -19,7 +19,7 @@ public class CoordinatorImpl implements Coordinator {
     public String preparePut(String key, String value) throws RemoteException {
         List<RemoteException> exceptions = new ArrayList<>();
         for (KeyValueStoreService server : serverList) {
-            System.out.println("Updating " +  server + "...");
+            //System.out.println("Updating " +  server + "...");
             try {
                 if (!server.preparePut(key, value).equals("Success")) {
                     // Abort on any server failing to respond with "Success" during prepare
@@ -64,28 +64,6 @@ public class CoordinatorImpl implements Coordinator {
         return "Success";  // All servers responded with "Success" during prepare
     }
 
-
-    // @Override
-    // public String prepareDeleteAll() throws RemoteException {
-    //     List<RemoteException> exceptions = new ArrayList<>();
-    //     for (KeyValueStoreService server : serverList) {
-    //         try {
-    //             if (!server.deleteAll().equals("Success")) {
-    //                 // Abort on any server failing to respond with "Success" during prepare
-    //                 abort(null, null);
-    //                 throw new RemoteException("Failed to prepare delete all", exceptions);
-    //             }
-    //         } catch (RemoteException e) {
-    //             exceptions.add(e);
-    //             // Abort on any server failure during prepare
-    //             abort(null, null);
-    //             throw new RemoteException("Failed to prepare delete all", exceptions);
-    //         }
-    //     }
-
-    //     return "Success";  // All servers responded with "Success" during prepare
-    // }
-
     @Override
     public void commitPut(String key, String value) throws RemoteException {
         List<RemoteException> exceptions = new ArrayList<>();
@@ -94,10 +72,8 @@ public class CoordinatorImpl implements Coordinator {
                 server.commitPut(key, value);
             } catch (RemoteException e) {
                 exceptions.add(e);
-                // Log exceptions here (optional)
             }
         }
-        // Potentially log exceptions here (optional)
     }
 
     @Override
@@ -108,10 +84,9 @@ public class CoordinatorImpl implements Coordinator {
                 server.commitDelete(key);
             } catch (RemoteException e) {
                 exceptions.add(e);
-                // Log exceptions here (optional)
+                // Log exceptions here
             }
         }
-        // Potentially log exceptions here (optional)
     }
 
     @Override
@@ -119,12 +94,12 @@ public class CoordinatorImpl implements Coordinator {
         for (KeyValueStoreService server : serverList) {
             try {
                 if (key != null) {
-                    server.delete(key);  // If key exists, delete it
+                    server.abort(key);
+                    //server.delete(key);  // If key exists, delete it
                 }
             } catch (RemoteException e) {
-                // Log exceptions here (optional)
+                // Log exceptions here
             }
         }
-        // Potentially log exceptions here (optional)
     }
 }

@@ -25,7 +25,7 @@ public class RMIClient_2PC {
             for (int i = 0; i < 5; i++) {
                 int port = basePort + i;
                 Registry registry = LocateRegistry.getRegistry(hostname, port);
-                KeyValueStoreService stub = (KeyValueStoreService) registry.lookup("KeyValueStoreService");
+                KeyValueStoreService stub = (KeyValueStoreService) registry.lookup("KeyValueStoreService"+(i+1));
                 replicaStubs.add(stub);
             }
 
@@ -43,7 +43,7 @@ public class RMIClient_2PC {
             } while (serverNumber < 1 || serverNumber > 5);
 
             KeyValueStoreService selectedServer = replicaStubs.get(serverNumber - 1);
-            System.out.println(selectedServer);
+            //System.out.println(selectedServer);
             if (serverNumber == 5) {
                 System.out.println("Coordinator selected. You can send 2PC requests.");
             }

@@ -31,10 +31,9 @@ public class KeyValueStoreImpl implements KeyValueStoreService {
 
     public synchronized String put(String key, String value) throws RemoteException {
         String result = coordinator.preparePut(key, value);
-        System.out.println("result inside  put: "+result);
+        //System.out.println("result inside  put: "+result);
         if (result.equals("Success")) {
-            //Store key-value pair in main store on successful prepare**
-            //store.put(key, value);
+            //Store key-value pair in main store on successful prepare
             coordinator.commitPut(key, value);
             prepareMap.remove(key);  // Cleanup temporary storage
             return "Key '" + key + "' stored with value '" + value + "'";
@@ -58,8 +57,7 @@ public class KeyValueStoreImpl implements KeyValueStoreService {
     public synchronized String delete(String key) throws RemoteException {
         String result = coordinator.prepareDelete(key);
         if (result.equals("Success")) {
-            //Store key-value pair in main store on successful prepare**
-            //store.remove(key);
+            //Store key-value pair in main store on successful prepare
             coordinator.commitDelete(key);
             prepareMap.remove(key);  // Cleanup temporary storage
             return "Deleted key '" + key + "'";
@@ -89,6 +87,10 @@ public class KeyValueStoreImpl implements KeyValueStoreService {
 
     public synchronized void commitDelete(String key) throws RemoteException {
         store.remove(key);   // Remove to main store from prepared state
+    }
+
+    public synchronized void abort(String key) throws RemoteException {
+        prepareMap.remove(key);   // Remove the just added key
     }
 
     public synchronized String getAll() throws RemoteException {
