@@ -33,7 +33,7 @@ public class PaxosServer {
             Proposer proposer = new ProposerImpl(acceptors, learners, serverList);
 
             for (int i = 0; i < numServers; i++) {
-                int failureRate = 10;
+                int failureRate = 25;
                 int port = basePort + i;
                 //isProposer = (i == 0); // First server acts as Proposer, rest as Acceptors
                 // Proposer proposer = new ProposerImpl(acceptors, learners, serverList);

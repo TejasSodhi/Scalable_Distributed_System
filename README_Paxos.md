@@ -1,0 +1,76 @@
+Project 4 -- Implementing Paxos Algorithm
+
+
+* Compile the code using `javac shared/*.java server/paxos/*.java client/*.java`
+* To run the 
+  * RMI server `java server/paxos.PaxosServer <port-number>`
+* To run the 
+  * RMI client `java client/RMIClient_2PC <host-name> <port-number>`
+
+
+
+# EXECUTIVE SUMMARY
+
+# Assignment Overview
+The assignment aims to implement a distributed key-value store system using the Paxos algorithm for achieving consensus among multiple nodes. 
+The scope involves creating three main components: Proposers, Acceptors, and Learners, each playing a crucial role in the Paxos protocol. 
+Proposers propose values to be agreed upon, Acceptors accept or reject proposals based on certain conditions, and Learners learn the agreed-upon values. 
+Additionally, the assignment involves implementing an Acceptor Monitor to handle failures in the system and ensure its resilience. 
+The purpose is to gain a practical understanding of distributed systems, consensus algorithms, and fault tolerance mechanisms.
+
+# Technical Impression
+Paxos is an algorithm for choosing a single value among multiple ones. 
+Here “choosing” means that all the members will see the same chosen value and the chosen value is indeed requested by a client. 
+The key idea is that a majority represents the whole — if more than half processes choose a value, that value is the consensus.
+In the context of this project, Paxos is employed to achieve consensus on the operations (PUT, GET, DELETE) that need to be executed at each roundID in the distributed key-value store.
+
+Following phases are performed:
+
+1) Prepare phase:
+-- The Paxos process begins with the prepare phase, initiated by the Proposer. 
+-- In the proposePut/ proposeDelete method, the system tries to achieve consensus by proposing a value for the current round. 
+-- The Proposer generates a unique ID(nextRound()) and sends a prepare request to the Acceptors to gather promises
+
+2) Promise phase:
+-- Each Acceptor checks if it has already promised to another proposal with a higher round(promisedId). 
+-- If not, it sends a promise to the Proposer. 
+-- The Proposer collects these promises and evaluates if a majority of Acceptors have agreed to the proposal.
+-- It then sets the highestRound and the highest accepted value.
+
+3) Accept phase:
+-- If a majority is achieved, the Proposer proceeds to the accept phase. 
+-- It sends an accept request to the Acceptors, including the proposed value for the current log ID. 
+-- Acceptors check if they have already accepted another proposal with a higher roundID. 
+-- If not, they accept the proposal and send an acknowledgment.
+
+4) Learn phase:
+-- The Proposer collects the acknowledgments from the Acceptors and evaluates if a majority has accepted the proposal.
+-- The Learner component learns the accepted value and notifies other components that the operation for the current roundID can be executed.
+-- Therefore all the learner nodes(server replicas) are consistent as the KeyValueStore is updated with the accepted value.
+-- The Proposer node is also consistent as it has the highestRound and highestAcceptedValue.
+
+# Mocking Fault Tolerance of the nodes
+-- In Paxos server, the failureRate variable within the AcceptorImpl class simulates fault tolerance.
+-- A random integer is generated between 0 and 100. if the random number is less than a threshold failureRate, then that particular Acceptor node fails and returns false.
+-- By randomly failing to respond to prepare and accept requests with a probability of failureRate, we are mimicking potential network issues, crashes, or overloaded servers. 
+-- This tests the system's ability to handle failures and still reach consensus through retries and other Paxos mechanisms.
+
+# Challenges and Learnings:
+
+-- The assignment provided valuable hands-on experience with Paxos, a complex distributed consensus algorithm. 
+-- Implementing the different message types (PrepareRequest, AcceptRequest, LearnRequest, etc.) and handling message exchanges between Proposers, Acceptors, and Learners was a key learning point.
+-- Simulating failures in Acceptors was an interesting aspect, allowing us to test the system's tolerance under various failure scenarios. 
+-- Debugging communication issues between RMI services required careful examination of network connectivity and exception handling.
+
+
+# Areas for Improvement:
+
+1)Error Handling: 
+-- While the code simulates failures, implementing more comprehensive error handling for communication failures and timeouts could further enhance robustness.
+
+2)Learner Implementation: 
+-- The Learner implementation could be extended to provide feedback to the Proposer about successful learning, allowing for potential retries upon failures.
+
+3)Performance Optimization: 
+-- Optimizations could be explored for handling large datasets or high-traffic scenarios.
+-- This might involve techniques like batching updates or using leader election for improved scalability.
