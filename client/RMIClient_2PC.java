@@ -19,7 +19,7 @@ public class RMIClient_2PC {
             int numberOfServers = 5;
             String hostname = (args.length < 1) ? null : args[0];
             int basePort = Integer.parseInt(args[1]);
-            int coordinatorPort = basePort + numberOfServers-1; // Coordinator is the last server
+            //int coordinatorPort = basePort + numberOfServers-1; // Coordinator is the last server
 
             List<KeyValueStoreService> replicaStubs = new ArrayList<>();
             for (int i = 0; i < 5; i++) {

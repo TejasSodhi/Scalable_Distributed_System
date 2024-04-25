@@ -57,7 +57,7 @@ public interface KeyValueStoreService extends Remote {
      * @return A status message indicating the outcome of the prepare phase.
      * @throws RemoteException If a communication-related error occurs during the method invocation.
      */
-    String preparePut(String key, String value) throws RemoteException;
+    //String preparePut(String key, String value) throws RemoteException;
 
     /**
      * Initiates the prepare phase for a DELETE operation with the specified key.
@@ -65,7 +65,7 @@ public interface KeyValueStoreService extends Remote {
      * @return A status message indicating the outcome of the prepare phase.
      * @throws RemoteException If a communication-related error occurs during the method invocation.
      */
-    String prepareDelete(String key) throws RemoteException;
+    //String prepareDelete(String key) throws RemoteException;
 
     /**
      * Commits a previously prepared PUT operation with the specified key and value.
@@ -87,5 +87,5 @@ public interface KeyValueStoreService extends Remote {
     * @param key The key of the key-value pair to be aborted.
     * @throws RemoteException If a communication-related error occurs during the method invocation.
     */
-    void abort(String key) throws RemoteException;
+    //void abort(String key) throws RemoteException;
 }

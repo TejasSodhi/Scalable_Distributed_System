@@ -81,13 +81,7 @@ public class KeyValueStoreImpl implements KeyValueStoreService {
         }
     }
 
-    public synchronized void commitPut(String key, String value) throws RemoteException {
-        store.put(key, value);   // Add/update key-value pair to main store from prepared state
-    }
-
-    public synchronized void commitDelete(String key) throws RemoteException {
-        store.remove(key);   // Remove to main store from prepared state
-    }
+ 
 
     public synchronized void abort(String key) throws RemoteException {
         prepareMap.remove(key);   // Remove the just added key
